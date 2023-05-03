@@ -4,14 +4,14 @@ import { nanoid } from 'nanoid'
 
 const ContactsList = ({events,deleteName}) => {
     return(
-        <UlContacts>
-            {events.map(event =>(
-                <LiContacts key={nanoid()}>{event.name}: {event.number}
-                <LiButton id={event.id} onClick={deleteName}>Delete</LiButton>
-                </LiContacts>
-                
-            ))}
-        </UlContacts>
+         <UlContacts>
+        {events.map(event =>(
+            <LiContacts key={nanoid()}>{event.name}: {event.number}
+            <LiButton id={event.id} onClick={deleteName}>Delete</LiButton>
+            </LiContacts>
+            
+        ))}
+    </UlContacts>
     )
 }
 
