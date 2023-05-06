@@ -1,11 +1,11 @@
-import React from 'react'
+import {Component} from 'react'
 import ContactForm from './ContactsForm/ContactForm'
 import Filter from './Filter/Filter'
 import ContactsList from './ContactsList/ContactsList'
 import {Container} from './AppStyled'
 import { nanoid } from 'nanoid'
 
-class App extends React.Component{
+class App extends Component {
   state = {
     contacts: [],
     contactsFilter:[],
@@ -13,12 +13,15 @@ class App extends React.Component{
   }
 
   newState = (name,number) =>{
-    if(this.state.contacts.find(option => option.name.toLowerCase() === `${name}`.toLowerCase())){
+    try {if(this.state.contacts.find(option => option.name.toLowerCase() === `${name}`.toLowerCase())){
       return alert(`${name} is already in contact`)
     }
 
     if(this.state.contacts.find(option => option.number === `${number}`)){
       return alert(`${number} is already in contact`)
+    }}
+    catch (error){
+      return
     }
 
     const updateSlice = [{id: `id-${nanoid()}`, name:`${name}`, number:`${number}`}]
