@@ -51,7 +51,8 @@ class App extends React.Component{
     
     const {filter} = this.state
     const currentState = this.state.contacts
-    const newState = currentState.filter(option => option.name.toLowerCase().includes(`${filter.toLowerCase()}`)) 
+    const newState = currentState
+    newState && newState.filter(option => option.name.toLowerCase().includes(`${filter.toLowerCase()}`))
     
     return (
       <Container>
