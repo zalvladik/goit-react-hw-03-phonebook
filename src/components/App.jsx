@@ -8,12 +8,10 @@ import { nanoid } from 'nanoid'
 class App extends Component {
   state = {
     contacts: [],
-    contactsFilter:[],
     filter: '',
   }
 
-  newState = (name,number) =>{
-      if(this.state.contacts.length > 0){
+  newState = (name,number) => {
         if(this.state.contacts.find(option => option.name.toLowerCase() === `${name}`.toLowerCase())){
           return alert(`${name} is already in contact`)
         }
@@ -21,7 +19,6 @@ class App extends Component {
         if(this.state.contacts.find(option => option.number === `${number}`)){
           return alert(`${number} is already in contact`)
         }
-      }
 
     const updateSlice = [{id: `id-${nanoid()}`, name:`${name}`, number:`${number}`}]
     const currentState = this.state.contacts
