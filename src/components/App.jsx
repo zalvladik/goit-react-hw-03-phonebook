@@ -23,7 +23,7 @@ class App extends Component {
   }
 
   newState = (name,number) => {
-    if(this.state.contacts.length > 0){
+    if(this.state.contacts.length != 0){
       console.log(this.state.contacts.length)
       if(this.state.contacts.find(option => option.name.toLowerCase() === `${name}`.toLowerCase())){
         return alert(`${name} is already in contact`)
