@@ -1,4 +1,4 @@
-import {Component} from 'react'
+import { Component } from 'react'
 import ContactForm from './ContactsForm/ContactForm'
 import Filter from './Filter/Filter'
 import ContactsList from './ContactsList/ContactsList'
@@ -10,15 +10,29 @@ class App extends Component {
     contacts: [],
     filter: '',
   }
+  
+  componentDidMount(){
+    this.setState({contacts:JSON.parse(localStorage.getItem('friendsList'))}) 
+  }
+ 
+  componentDidUpdate(prevProps, prevState){
+    if(prevState.contacts !== this.state.contacts){
+      localStorage.setItem('friendsList', JSON.stringify(this.state.contacts))
+    }
+
+  }
 
   newState = (name,number) => {
-        if(this.state.contacts.find(option => option.name.toLowerCase() === `${name}`.toLowerCase())){
-          return alert(`${name} is already in contact`)
-        }
-    
-        if(this.state.contacts.find(option => option.number === `${number}`)){
-          return alert(`${number} is already in contact`)
-        }
+    if(this.state.contacts.length > 0){
+      console.log(this.state.contacts.length)
+      if(this.state.contacts.find(option => option.name.toLowerCase() === `${name}`.toLowerCase())){
+        return alert(`${name} is already in contact`)
+      }
+  
+      if(this.state.contacts.find(option => option.number === `${number}`)){
+        return alert(`${number} is already in contact`)
+      }
+    }
 
     const updateSlice = [{id: `id-${nanoid()}`, name:`${name}`, number:`${number}`}]
     const currentState = this.state.contacts
@@ -37,19 +51,9 @@ class App extends Component {
     this.setState({filter:`${event.currentTarget.value}`})
   }
   
-  componentDidMount(){
-     this.setState({contacts:JSON.parse(localStorage.getItem('friendsList'))}) 
-  }
   
-  componentDidUpdate(prevProps, prevState){
-    if(prevState.contacts !== this.state.contacts){
-      localStorage.setItem('friendsList', JSON.stringify(this.state.contacts))
-    }
-
-  }
 
   render(){
-    
     const {filter} = this.state
     const currentState = this.state.contacts
     const newState = currentState && currentState.filter(option => option.name.toLowerCase().includes(`${filter.toLowerCase()}`))
