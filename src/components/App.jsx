@@ -8,6 +8,7 @@ import { nanoid } from 'nanoid'
 class App extends React.Component{
   state = {
     contacts: [],
+    contactsFilter:[],
     filter: '',
   }
 
@@ -45,13 +46,15 @@ class App extends React.Component{
     if(prevState.contacts !== this.state.contacts){
       localStorage.setItem('friendsList', JSON.stringify(this.state.contacts))
     }
+
   }
 
   render(){
     
     const {filter} = this.state
     const currentState = this.state.contacts
-    const newState = currentState.filter(option => option.name.toLowerCase().includes(`${filter.toLowerCase()}`))
+    const newState = currentState && currentState.filter(option => option.name.toLowerCase().includes(`${filter.toLowerCase()}`))
+    
     
     return (
       <Container>
