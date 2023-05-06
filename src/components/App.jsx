@@ -51,8 +51,7 @@ class App extends React.Component{
     
     const {filter} = this.state
     const currentState = this.state.contacts
-    const newState = currentState
-    newState && newState.filter(option => option.name.toLowerCase().includes(`${filter.toLowerCase()}`))
+    const newState = currentState.filter(option => option.name.toLowerCase().includes(`${filter.toLowerCase()}`))
     
     return (
       <Container>
@@ -66,10 +65,11 @@ class App extends React.Component{
     filterName={this.filterName}
     filterValue={this.state.filter}
     />
+    {this.state.contacts && 
     <ContactsList
     deleteName={this.deleteName}
     events={newState}
-    /> 
+    /> }
     </Container>
   );
 }
