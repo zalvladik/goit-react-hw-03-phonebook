@@ -12,7 +12,7 @@ class App extends Component {
   }
   
   componentDidMount(){
-    lodalStorage.getItem('friendsList')
+    localStorage.getItem('friendsList')
     if(JSON.parse(localStorage.getItem('friendsList'))[0] !== undefined){
       return this.setState({contacts:JSON.parse(localStorage.getItem('friendsList'))})
     }
