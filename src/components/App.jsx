@@ -12,9 +12,11 @@ class App extends Component {
   }
   
   componentDidMount(){
-    if(localStorage.getItem('friendsList')){
-      this.setState({contacts:JSON.parse(localStorage.getItem('friendsList'))})
-    } 
+    if(JSON.parse(localStorage.getItem('friendsList')).length === 0){
+      return
+    }
+
+    this.setState({contacts:JSON.parse(localStorage.getItem('friendsList'))})
   }
  
   componentDidUpdate(prevProps, prevState){
