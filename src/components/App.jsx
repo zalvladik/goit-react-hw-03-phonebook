@@ -26,6 +26,7 @@ class App extends Component {
   }
 
   newState = (name,number) => {
+    if(localStorage.getItem('friendsList') !== null){
       if(this.state.contacts.find(option => option.name.toLowerCase() === `${name}`.toLowerCase())){
         return alert(`${name} is already in contact`)
       }
@@ -33,6 +34,8 @@ class App extends Component {
       if(this.state.contacts.find(option => option.number === `${number}`)){
         return alert(`${number} is already in contact`)
       }
+    }
+      
     
 
     const updateSlice = [{id: `${nanoid()}`, name:`${name}`, number:`${number}`}]
