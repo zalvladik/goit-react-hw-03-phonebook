@@ -12,11 +12,9 @@ class App extends Component {
   }
   
   componentDidMount(){
-    if(JSON.parse(localStorage.getItem('friendsList')).length === 0){
-      return
+    if(JSON.parse(localStorage.getItem('friendsList'))[0] !== undefined){
+      return this.setState({contacts:JSON.parse(localStorage.getItem('friendsList'))})
     }
-
-    this.setState({contacts:JSON.parse(localStorage.getItem('friendsList'))})
   }
  
   componentDidUpdate(prevProps, prevState){
@@ -27,7 +25,6 @@ class App extends Component {
   }
 
   newState = (name,number) => {
-    
       if(this.state.contacts.find(option => option.name.toLowerCase() === `${name}`.toLowerCase())){
         return alert(`${name} is already in contact`)
       }
@@ -37,7 +34,7 @@ class App extends Component {
       }
     
 
-    const updateSlice = [{id: `id-${nanoid()}`, name:`${name}`, number:`${number}`}]
+    const updateSlice = [{id: `${nanoid()}`, name:`${name}`, number:`${number}`}]
     const currentState = this.state.contacts
 
     this.setState({contacts:[...currentState,...updateSlice]})
